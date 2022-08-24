@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-List</title>
+    <style>
+        #myList{
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="candidate" />
+    <button id="add" onclick="add()">Add</button>
+    <button id="remove" onclick="remove()">Remove</button>
+    <script>
+    function add(){
+        var c = document.getElementById('candidate')
+       var x =  document.createElement('UL');
+       x.setAttribute('id' , 'myId');
+       document.body.appendChild(x);
+
+       var y = document.createElement("LI")
+       y.setAttribute('id','myList')
+       var t = document.createTextNode(candidate.value);
+       y.appendChild(t)
+       document.getElementById('myId').appendChild(y);
+    }
+    function remove(){
+       var z = document.getElementById('myId');
+       var l = document.getElementById('myList');
+       z.removeChild(l);
+    }
+    </script>
+</body>

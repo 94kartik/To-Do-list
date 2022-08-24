@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-list</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <style>
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/background.jpg) no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #add-task-container {
+            width: 350px;
+            padding: 20px 10px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 3px;
+            margin-right: 20px;
+            display: flex;
+        }
+
+        input {
+            flex: 5;
+            margin-right: 10px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        #add-task {
+            flex: 1;
+            transition: 0.3s;
+            font-size: 1.2;
+            padding: 5px;
+            background-color: #fff;
+            color: green;
+            border: green solid 2px;
+            border-radius: 10px;
+        }
+
+        #add-task:hover {
+            background-color: green;
+            color: #fff;
+        }
+
+        /* syling for the task*/
+
+        .task {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 3px;
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task li {
+            list-style: none;
+            flex: 4;
+            padding: 5px;
+            font-size: 1.3rem;
+            margin: 10px;
+        }
+
+        .task button {
+            flex: 1;
+            border-radius: 10px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .task .checkTask {
+            color: orange;
+            margin-right: 5px;
+            border: solid 2px orange;
+            font-size: 1.5rem;
+        }
+
+        .task .checkTask:hover {
+            background-color: orange;
+            color: #fff;
+        }
+
+        .task .deleteTask {
+            color: red;
+            border: solid 2px red;
+            font-size: 1.3rem;
+        }
+
+        .task .deleteTask:hover {
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="add-task-container">
+            <input type="text" placeholder="Enter Task" id="input-task">
+            <button id="add-task">Add</button>
+        </div>
+    </div>
+    <div id="task-container"></div>
+    <script>
+        //variables
+        const addTask = document.getElementById('add-task');
+        const taskContainer = document.getElementById('task-container');
+        const inputTask = document.getElementById('input-task');
+
+
+
+        addTask.addEventListener('click', function () {
+            let task = document.createElement('div');
+            task.classList.add('task');
+
+            let li = document.createElement('li');
+            li.innerText = `${inputTask.value}`;
+            task.appendChild(li);
+
+
+            let checkButton = document.createElement('button');
+            checkButton.innerHTML = '<i class="fa fa-plus" aria-hidden="true"></i>';
+            checkButton.classList.add('checkTask');
+            task.appendChild(checkButton);
+
+            let deleteButton = document.createElement('button');
+            deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
+            deleteButton.classList.add('deleteTask');
+            task.appendChild(deleteButton);
+
+            if (inputTask.value === '') {
+                alert('Please Enter Task');
+            } else {
+                taskContainer.appendChild(task)
+            }
+
+            inputTask.value = '';
+
+
+
+            checkButton.addEventListener('click', function () {
+                checkButton.parentElement.style.textDecoration = 'line-through'
+            });
+            deleteButton.addEventListener('click', function (e) {
+                let target = e.target;
+                target.parentElement.parentElement.remove();
+            })
+        })
+    </script>
+</body>
+
+</html>
